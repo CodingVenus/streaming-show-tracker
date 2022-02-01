@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/")
+@RequestMapping(path = "api/show")
 public class ShowController {
 
     public ShowService showService;
@@ -20,7 +20,7 @@ public class ShowController {
         this.showService = showService;
     }
 
-    @GetMapping(path = "show/all")
+    @GetMapping
     public List<Show> getShowList(){
         return showService.getShowList();
     }
