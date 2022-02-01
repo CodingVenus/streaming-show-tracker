@@ -20,7 +20,7 @@ public class ShowController {
         this.showService = showService;
     }
 
-    @GetMapping
+    @GetMapping(path = "show/all")
     public List<Show> getShowList(){
         return showService.getShowList();
     }
