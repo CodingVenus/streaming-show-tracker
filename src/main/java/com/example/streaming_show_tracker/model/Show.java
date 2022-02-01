@@ -1,6 +1,5 @@
 package com.example.streaming_show_tracker.model;
 
-
 public class Show {
 
     private Long Id;
@@ -10,6 +9,7 @@ public class Show {
     private Integer year;
     private String watchStatus;
 
+    //CONSTRUCTORS
     public Show() {
     }
 
@@ -22,6 +22,64 @@ public class Show {
         this.watchStatus = watchStatus;
     }
 
+    //GETTERS AND SETTERS
+    public Long getId() {
+        return Id;
+    }
 
+    public void setId(Long id) {
+        Id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public String getWatchStatus() {
+        return watchStatus;
+    }
+
+    public void setWatchStatus(String watchStatus) {
+        this.watchStatus = watchStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Show{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", description='" + description + '\'' +
+                ", year=" + year +
+                ", watchStatus='" + watchStatus + '\'' +
+                '}';
+    }
 }
