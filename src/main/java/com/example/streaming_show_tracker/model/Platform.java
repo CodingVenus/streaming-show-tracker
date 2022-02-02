@@ -1,5 +1,6 @@
 package com.example.streaming_show_tracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -32,6 +33,19 @@ public class Platform {
     }
 
 
+    //MAPPING TO USER TABLE
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     //CONSTRUCTORS
     public Platform() {

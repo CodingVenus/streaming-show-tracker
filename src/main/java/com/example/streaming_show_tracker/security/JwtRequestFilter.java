@@ -19,9 +19,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
-
     @Autowired
     private JWTUtils jwtUtils;
+
+//    public JwtRequestFilter(JWTUtils jwtUtils, MyUserDetailsService myUserDetailsService) {
+//        this.jwtUtils = jwtUtils;
+//        this.myUserDetailsService = myUserDetailsService;
+//    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
@@ -38,6 +42,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwt = AuthorizationHeader.substring(7);
             username = jwtUtils.extractUsername(jwt);
         }
+
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.myUserDetailsService.loadUserByUsername(username);

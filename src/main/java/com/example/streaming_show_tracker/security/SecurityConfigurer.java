@@ -20,13 +20,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 
     private MyUserDetailsService myUserDetailsService;
-    private final JwtRequestFilter jwtRequestFilter;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
-    public SecurityConfigurer(MyUserDetailsService myUserDetailsService, JwtRequestFilter jwtRequestFilter) {
+    public void setMyUserDetailsService(MyUserDetailsService myUserDetailsService) {
         this.myUserDetailsService = myUserDetailsService;
-        this.jwtRequestFilter = jwtRequestFilter;
     }
+//    @Autowired
+//    public SecurityConfigurer(MyUserDetailsService myUserDetailsService, JwtRequestFilter jwtRequestFilter) {
+//        this.myUserDetailsService = myUserDetailsService;
+//        this.jwtRequestFilter = jwtRequestFilter;
+//    }
 
     @Bean
     public PasswordEncoder encoder() {

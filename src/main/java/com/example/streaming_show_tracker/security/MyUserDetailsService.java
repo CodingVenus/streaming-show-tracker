@@ -12,11 +12,15 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
+//    @Autowired
+//    public MyUserDetailsService(UserService userService) {
+//        this.userService = userService;
+//    }
+
     @Autowired
-    public MyUserDetailsService(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
-
 
     public UserDetails loadUserByUsername(String email){
         User user = userService.findUserByEmailAddress(email);

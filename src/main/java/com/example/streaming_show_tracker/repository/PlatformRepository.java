@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface PlatformRepository extends JpaRepository<Platform, Long> {
 
-    List<Platform> findByUserId(Long userId);
+    List<Platform> findByUserId(Long id);
 
 }
