@@ -34,4 +34,9 @@ public class PlatformController {
     public Platform updatePlatform(@PathVariable(value = "platformId") Long platformId, @RequestBody Platform platformObject){
         return platformService.updatePlatform(platformId, platformObject);
     }
+
+    @DeleteMapping("{platformId}")
+    public Platform deleteCategory(@PathVariable(value = "platformId") Long platformId) {
+        return platformService.deletePlatform(platformId);
+    }
 }
