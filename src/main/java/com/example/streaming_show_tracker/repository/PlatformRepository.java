@@ -10,5 +10,7 @@ import java.util.List;
 public interface PlatformRepository extends JpaRepository<Platform, Long> {
 
     List<Platform> findByUserId(Long id);
+    Platform findByUserIdAndName(Long userId, String name);
+    Platform findByIdAndUserId (Long categoryId, Long userId);
 
 }
