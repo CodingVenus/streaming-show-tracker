@@ -30,8 +30,8 @@ public class PlatformController {
         return platformService.createPlatform(platformObject);
     }
 
-    @PutMapping
-    public Platform updatePlatform(@RequestBody Platform platformObject){
-        return platformService.createPlatform(platformObject);
+    @PutMapping("{platformId}")
+    public Platform updatePlatform(@PathVariable(value = "platformId") Long platformId, @RequestBody Platform platformObject){
+        return platformService.updatePlatform(platformId, platformObject);
     }
 }
