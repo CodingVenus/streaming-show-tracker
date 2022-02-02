@@ -1,7 +1,14 @@
 package com.example.streaming_show_tracker.model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "shows")
 public class Show {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
     private String genre;
