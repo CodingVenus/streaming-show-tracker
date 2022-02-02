@@ -31,17 +31,38 @@ public class User {
     public UserProfile getUserProfile() {
         return userProfile;
     }
-
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
     }
-
 
 
     //MAPPING TO PLATFORM LIST
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Platform> platformList;
+
+            //GETTER AND SETTER FOR PlatformList
+    public List<Platform> getPlatformList() {
+        return platformList;
+    }
+    public void setPlatformList(List<Platform> platformList) {
+        this.platformList = platformList;
+    }
+
+
+    //MAPPING TO SHOW LIST
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Show> showList;
+
+            //GETTER AND SETTER FOR ShowList
+    public List<Show> getShowList() {
+        return showList;
+    }
+    public void setShowList(List<Show> showList) {
+        this.showList = showList;
+    }
+
 
 
     //CONSTRUCTORS
