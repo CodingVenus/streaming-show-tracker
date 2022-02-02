@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name ="users")
 public class User {
 
+    //FIELDS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,6 +29,7 @@ public class User {
         this.emailAddress = emailAddress;
         this.password = password;
     }
+
 
     //GETTERS AND SETTERS
     public Long getId() {
