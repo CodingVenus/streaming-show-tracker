@@ -21,8 +21,8 @@ public class ShowController {
     }
 
     @GetMapping
-    public List<Show> getShowList(){
-        return showService.getShowList();
+    public List<Show> getShowList(Long platformId){
+        return showService.getAllShows(platformId);
     }
 
 }
