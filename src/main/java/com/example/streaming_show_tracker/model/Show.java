@@ -1,6 +1,8 @@
 package com.example.streaming_show_tracker.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,15 @@ public class Show {
     private String description;
     private Integer year;
     private String watchStatus;
+
+
+    //MAPPING TO PLATFORM TABLE
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name= "platform_id")
+    private Platform platform;
+
+
 
     //CONSTRUCTORS
     public Show() {

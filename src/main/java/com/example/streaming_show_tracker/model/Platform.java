@@ -17,13 +17,19 @@ public class Platform {
     private String name;
 
 
-    //MAPPING TO SHOWS TABLE
+    //MAPPING TO SHOW TABLE
     @OneToMany(mappedBy = "platform", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Show> showList;
 
+            //SHOW GETTERS AND SETTERS
+    public List<Show> getShowList() {
+        return showList;
+    }
 
-
+    public void setShowList(List<Show> showList) {
+        this.showList = showList;
+    }
 
 
 
