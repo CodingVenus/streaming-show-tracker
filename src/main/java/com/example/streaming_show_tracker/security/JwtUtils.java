@@ -26,7 +26,6 @@ public class JwtUtils {
     }
 
 
-
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
@@ -37,6 +36,10 @@ public class JwtUtils {
         return extractClaims(token, Claims::getExpiration);
     }
 
+
+    public String extractUsername(String token) {
+        return extractClaims(token, Claims::getSubject);
+    }
 
 
 
