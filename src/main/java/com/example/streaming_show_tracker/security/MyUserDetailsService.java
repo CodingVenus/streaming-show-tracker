@@ -14,4 +14,9 @@ public class MyUserDetailsService {
         this.userService = userService;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String email){
+        User user = userService.findUserByEmailAddress(email);
+        return new MyUserDetails(user);
+    }
 }
