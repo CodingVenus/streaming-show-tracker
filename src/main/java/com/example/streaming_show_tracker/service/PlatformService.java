@@ -1,5 +1,6 @@
 package com.example.streaming_show_tracker.service;
 
+import com.example.streaming_show_tracker.exceptions.InformationExistsException;
 import com.example.streaming_show_tracker.exceptions.InformationNotFoundException;
 import com.example.streaming_show_tracker.model.Platform;
 import com.example.streaming_show_tracker.repository.PlatformRepository;
@@ -33,6 +34,21 @@ public class PlatformService {
             throw new InformationNotFoundException("No platform listings found for user id " + userDetails.getUser().getId());
         } else {
             return platform;
+        }
+    }
+
+    public Platform createPlatform(Platform platformObject) {
+
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Platform platform = platformRepository.findByUserIdAndName(userDetails.getUser().getId(), platformObject.getName());
+
+        if (platform != null)
+        {
+            throw new InformationExistsException("Category with name " + platform.getName() + " Already exists");
+        } else {
+            platformObject.setUser(userDetails.getUser());
+            return platformRepository.save(platformObject);
         }
     }
 
