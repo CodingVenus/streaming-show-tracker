@@ -30,10 +30,27 @@ public class Show {
     public Platform getPlatform() {
         return platform;
     }
-
     public void setPlatform(Platform platform) {
         this.platform = platform;
     }
+
+
+
+    //MAPPING TO USER TABLE
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+            //USER GETTERS AND SETTERS
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
 
     //CONSTRUCTORS
