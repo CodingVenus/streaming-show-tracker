@@ -22,6 +22,7 @@ public class UserProfile {
     @OneToOne
     private User user;
 
+            //GETTER AND SETTER FOR USER
     public User getUser() {
         return user;
     }

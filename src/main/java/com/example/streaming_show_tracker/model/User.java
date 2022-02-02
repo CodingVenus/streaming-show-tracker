@@ -24,6 +24,7 @@ public class User {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
+            //GETTER AND SETTER FOR PROFILE
     public UserProfile getUserProfile() {
         return userProfile;
     }
@@ -31,6 +32,7 @@ public class User {
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
     }
+
 
     //CONSTRUCTORS
     public User() {
