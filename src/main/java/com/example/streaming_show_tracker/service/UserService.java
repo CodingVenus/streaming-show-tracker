@@ -1,5 +1,7 @@
 package com.example.streaming_show_tracker.service;
 
+import com.example.streaming_show_tracker.model.Request.LoginRequest;
+import com.example.streaming_show_tracker.model.Response.LoginResponse;
 import com.example.streaming_show_tracker.repository.UserRepository;
 import com.example.streaming_show_tracker.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +39,9 @@ public class UserService {
     //Authentication
     public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmailAddress(), loginRequest.getPassword()));
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmailAddress());
 
         final String JWT = jwtUtils.generateToken(userDetails); //once it has been generated it can't be changed
 

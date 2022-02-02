@@ -6,7 +6,7 @@ public class LoginRequest {
     private String password;
 
 
-    public String getEmail() {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
