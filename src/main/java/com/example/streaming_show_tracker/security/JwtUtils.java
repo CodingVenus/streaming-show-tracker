@@ -3,6 +3,7 @@ package com.example.streaming_show_tracker.security;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public class JwtUtils {
     String SECRET_KEY = "TestKey";
@@ -44,6 +45,11 @@ public class JwtUtils {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+    }
+
+    public <T> T extractClaims(String token, Function<Claims, T> claimResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimResolver.apply(claims);
     }
 
 
