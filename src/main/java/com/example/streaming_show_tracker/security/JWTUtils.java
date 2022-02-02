@@ -58,6 +58,4 @@ public class JWTUtils {
         return claimResolver.apply(claims);
     }
 
-
-
 }

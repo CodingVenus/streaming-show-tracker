@@ -4,10 +4,11 @@ import com.example.streaming_show_tracker.model.User;
 import com.example.streaming_show_tracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MyUserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
