@@ -64,7 +64,6 @@ public class User {
     }
 
 
-
     //CONSTRUCTORS
     public User() {
     }
