@@ -7,9 +7,10 @@ import javax.persistence.*;
 @Table(name = "shows")
 public class Show {
 
+    //FIELDS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String name;
     private String genre;
     private String description;
@@ -21,7 +22,7 @@ public class Show {
     }
 
     public Show(Long id, String name, String genre, String description, Integer year, String watchStatus) {
-        this.Id = id;
+        this.id = id;
         this.name = name;
         this.genre = genre;
         this.description = description;
@@ -31,11 +32,11 @@ public class Show {
 
     //GETTERS AND SETTERS
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -81,7 +82,7 @@ public class Show {
     @Override
     public String toString() {
         return "Show{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +
                 ", description='" + description + '\'' +
