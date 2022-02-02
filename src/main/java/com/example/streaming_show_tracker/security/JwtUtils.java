@@ -1,5 +1,9 @@
 package com.example.streaming_show_tracker.security;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +36,6 @@ public class JwtUtils {
     }
 
 
-
     private Date extractExpiration(String token) {
         return extractClaims(token, Claims::getExpiration);
     }
@@ -51,9 +54,6 @@ public class JwtUtils {
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
     }
-
-
-
 
 
 
