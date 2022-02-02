@@ -19,6 +19,12 @@ public class User {
     private String password;
 
 
+    //MAPPING TO PROFILE
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    private UserProfile userProfile;
+
+
     //CONSTRUCTORS
     public User() {
     }
