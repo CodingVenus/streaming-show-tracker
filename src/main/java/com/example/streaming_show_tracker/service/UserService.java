@@ -16,21 +16,26 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    @Autowired public UserService(UserRepository userRepository) {
+    @Autowired
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    @Autowired private AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-    @Autowired private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-    @Autowired private JWTUtils jwtUtils;
+    @Autowired
+    private JWTUtils jwtUtils;
 
 
     //Authentication
-    public ResponseEntity<?> loginUser(LoginRequest loginRequest){
+    public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
@@ -41,8 +46,6 @@ public class UserService {
         return ResponseEntity.ok(new LoginResponse(JWT));
 
     }
-
-
 
 
 }
