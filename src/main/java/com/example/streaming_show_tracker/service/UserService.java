@@ -2,6 +2,7 @@ package com.example.streaming_show_tracker.service;
 
 import com.example.streaming_show_tracker.model.Request.LoginRequest;
 import com.example.streaming_show_tracker.model.Response.LoginResponse;
+import com.example.streaming_show_tracker.model.User;
 import com.example.streaming_show_tracker.repository.UserRepository;
 import com.example.streaming_show_tracker.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class UserService {
     private JWTUtils jwtUtils;
 
 
+    public User findUserByEmailAddress(String email) {
+        return userRepository.findUserByEmailAddress(email);
+    }
+
+
     //Authentication
     public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
 
@@ -43,7 +49,7 @@ public class UserService {
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmailAddress());
 
-        final String JWT = jwtUtils.generateToken(userDetails); //once it has been generated it can't be changed
+        final String JWT = jwtUtils.generateToken(userDetails);
 
         return ResponseEntity.ok(new LoginResponse(JWT));
 
