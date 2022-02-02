@@ -5,9 +5,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 public class MyUserDetails implements UserDetails {
 
+    //FIELDS
     private User user;
     private String userName;
     private String password;
@@ -19,38 +21,48 @@ public class MyUserDetails implements UserDetails {
         this.user = user;
     }
 
+
+    //OVERRIDED METHODS
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public Collection<? extends GrantedAuthority> getAuthorities(){
+        return new HashSet<GrantedAuthority>();
     }
 
     @Override
-    public String getPassword() {
-        return null;
+    public String getPassword(){
+        return user.getPassword();
     }
 
     @Override
-    public String getUsername() {
-        return null;
+    public String getUsername(){
+        return user.getEmailAddress();
     }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return false;
+    public boolean isAccountNonExpired(){
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
+
+
+
+    //GET USER METHOD
+    public User getUser() {
+        return user;
+    }
+
 }
