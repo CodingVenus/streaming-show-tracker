@@ -21,7 +21,9 @@ public class PlatformService {
         this.platformRepository = platformRepository;
     }
 
-    //GET METHOD
+    //GET METHODS
+
+            //GET ALL
     public List<Platform> getAllPlatforms() {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -37,28 +39,26 @@ public class PlatformService {
         }
     }
 
-
-
-//    //GET ONE BY ID
-//    public Platform getPlatform(Long platformId) {
-//
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
-//
-//        if (platform == null) {
-//            throw new InformationNotFoundException("Platform with ID " + platformId + " was not found.");
-//        } else {
-//            return platform;
-//        }
-//    }
-
-    //GET ONE BY ID
-    public Platform getPlatform(String platformName) {
+            //GET ONE BY ID
+    public Platform getPlatformById(Long platformId) {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-//        Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
+        Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
+
+        if (platform == null) {
+            throw new InformationNotFoundException("Platform with ID " + platformId + " was not found.");
+        } else {
+            return platform;
+        }
+    }
+
+
+            //GET ONE BY NAME
+    public Platform getPlatformByName(String platformName) {
+
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         Platform platform = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformName);
 
         if (platform == null) {
@@ -67,7 +67,6 @@ public class PlatformService {
             return platform;
         }
     }
-
 
 
 

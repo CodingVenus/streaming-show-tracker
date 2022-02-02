@@ -19,15 +19,27 @@ public class PlatformController {
         this.platformService = platformService;
     }
 
+    //GET MAPPING
+
+            //GET ALL
     @GetMapping
     public List<Platform> getAllPlatforms() {
         return platformService.getAllPlatforms();
     }
 
-    @GetMapping("{platformName}")
-    public Platform getOnePlatform(@PathVariable(value = "platformName")String platformName) {
-        return platformService.getPlatform(platformName);
+
+            //GET ONE BY ID
+    @GetMapping("{platformId}")
+    public Platform getPlatformById(@PathVariable(value = "platformId") Long platformId) {
+        return platformService.getPlatformById(platformId);
     }
+
+            //GET ONE BY NAME
+    @GetMapping("{platformName}")
+    public Platform getPlatformByName(@PathVariable(value = "platformName") String platformName) {
+        return platformService.getPlatformByName(platformName);
+    }
+
 
 
     @PostMapping
@@ -36,7 +48,7 @@ public class PlatformController {
     }
 
     @PutMapping("{platformId}")
-    public Platform updatePlatform(@PathVariable(value = "platformId") Long platformId, @RequestBody Platform platformObject){
+    public Platform updatePlatform(@PathVariable(value = "platformId") Long platformId, @RequestBody Platform platformObject) {
         return platformService.updatePlatform(platformId, platformObject);
     }
 
