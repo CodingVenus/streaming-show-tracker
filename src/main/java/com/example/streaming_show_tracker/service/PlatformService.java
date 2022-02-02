@@ -28,8 +28,6 @@ public class PlatformService {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        System.out.println(userDetails.getUser().getId());
-
         List<Platform> platform = platformRepository.findByUserId(userDetails.getUser().getId());
 
         if (platform.isEmpty()) {
