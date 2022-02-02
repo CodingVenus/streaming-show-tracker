@@ -1,5 +1,6 @@
 package com.example.streaming_show_tracker.service;
 
+import com.example.streaming_show_tracker.exceptions.InformationExistsException;
 import com.example.streaming_show_tracker.model.Request.LoginRequest;
 import com.example.streaming_show_tracker.model.Response.LoginResponse;
 import com.example.streaming_show_tracker.model.User;
