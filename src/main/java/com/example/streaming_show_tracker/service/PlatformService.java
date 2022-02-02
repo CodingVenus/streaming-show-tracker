@@ -72,7 +72,7 @@ public class PlatformService {
     }
 
     //DELETE
-    public Platform deletePlatform(Long platformId) {
+    public String deletePlatform(Long platformId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
@@ -80,8 +80,7 @@ public class PlatformService {
             throw new InformationNotFoundException("Platform with ID " + platformId + " is not found.");
         } else {
             platformRepository.deleteById(platformId);
-            System.out.println("Platform with ID " + platformId + " has been successfully deleted.");
-            return platform;
+            return "Platform Name: " + platform.getName() + " Id: " + platformId + " has been successfully deleted.";
         }
     }
 

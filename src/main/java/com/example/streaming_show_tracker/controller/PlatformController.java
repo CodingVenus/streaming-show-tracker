@@ -36,7 +36,7 @@ public class PlatformController {
     }
 
     @DeleteMapping("{platformId}")
-    public Platform deleteCategory(@PathVariable(value = "platformId") Long platformId) {
+    public String deleteCategory(@PathVariable(value = "platformId") Long platformId) {
         return platformService.deletePlatform(platformId);
     }
 }
