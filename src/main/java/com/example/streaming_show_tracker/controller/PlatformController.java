@@ -29,13 +29,13 @@ public class PlatformController {
 
 
             //GET ONE BY ID
-    @GetMapping("{platformId}")
+    @GetMapping("/id/{platformId}")
     public Platform getPlatformById(@PathVariable(value = "platformId") Long platformId) {
         return platformService.getPlatformById(platformId);
     }
 
             //GET ONE BY NAME
-    @GetMapping("{platformName}")
+    @GetMapping("/name/{platformName}")
     public Platform getPlatformByName(@PathVariable(value = "platformName") String platformName) {
         return platformService.getPlatformByName(platformName);
     }
