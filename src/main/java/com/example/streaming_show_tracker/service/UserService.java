@@ -18,24 +18,23 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
-
-    @Autowired
     private UserDetailsService userDetailsService;
-
-    @Autowired
     private JWTUtils jwtUtils;
 
+    @Autowired
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       AuthenticationManager authenticationManager,
+                       UserDetailsService userDetailsService,
+                       JWTUtils jwtUtils) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.jwtUtils = jwtUtils;
+    }
 
     public User findUserByEmailAddress(String email) {
         return userRepository.findUserByEmailAddress(email);
