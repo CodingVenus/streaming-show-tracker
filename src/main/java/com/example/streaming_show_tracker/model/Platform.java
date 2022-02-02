@@ -1,6 +1,10 @@
 package com.example.streaming_show_tracker.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="platforms")
@@ -11,6 +15,16 @@ public class Platform {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+
+    //MAPPING TO SHOWS TABLE
+    @OneToMany(mappedBy = "platform", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Show> showList;
+
+
+
+
 
 
     //CONSTRUCTORS
