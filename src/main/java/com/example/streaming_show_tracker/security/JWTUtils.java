@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class JwtUtils {
+public class JWTUtils {
     String SECRET_KEY = "TestKey";
 
     public String generateToken(UserDetails userDetails) {
