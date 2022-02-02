@@ -24,6 +24,11 @@ public class PlatformController {
         return platformService.getAllPlatforms();
     }
 
+    @GetMapping("{platformName}")
+    public Platform getOnePlatform(@PathVariable(value = "platformName")String platformName) {
+        return platformService.getPlatform(platformName);
+    }
+
 
     @PostMapping
     public Platform createPlatform(@RequestBody Platform platformObject) {

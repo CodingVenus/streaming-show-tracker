@@ -37,12 +37,46 @@ public class PlatformService {
         }
     }
 
+
+
+//    //GET ONE BY ID
+//    public Platform getPlatform(Long platformId) {
+//
+//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
+//
+//        if (platform == null) {
+//            throw new InformationNotFoundException("Platform with ID " + platformId + " was not found.");
+//        } else {
+//            return platform;
+//        }
+//    }
+
+    //GET ONE BY ID
+    public Platform getPlatform(String platformName) {
+
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//        Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
+        Platform platform = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformName);
+
+        if (platform == null) {
+            throw new InformationNotFoundException("Platform with name " + platformName + " was not found.");
+        } else {
+            return platform;
+        }
+    }
+
+
+
+
     //POST
     public Platform createPlatform(Platform platformObject) {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Platform platform = platformRepository.findByUserIdAndName(userDetails.getUser().getId(), platformObject.getName());
+        Platform platform = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformObject.getName());
 
         if (platform != null)
         {
