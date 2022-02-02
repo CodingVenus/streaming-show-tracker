@@ -1,5 +1,7 @@
 package com.example.streaming_show_tracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,20 @@ public class UserProfile {
     private String firstName;
     private String lastName;
     private String profileDescription;
+
+
+    //MAPPING TO USER
+    @JsonIgnore
+    @OneToOne
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
     //CONSTRUCTORS
