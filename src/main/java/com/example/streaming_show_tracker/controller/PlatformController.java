@@ -29,4 +29,9 @@ public class PlatformController {
     public Platform createPlatform(@RequestBody Platform platformObject) {
         return platformService.createPlatform(platformObject);
     }
+
+    @PutMapping
+    public Platform updatePlatform(@RequestBody Platform platformObject){
+        return platformService.createPlatform(platformObject);
+    }
 }
