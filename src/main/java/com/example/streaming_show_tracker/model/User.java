@@ -1,8 +1,11 @@
 package com.example.streaming_show_tracker.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name ="users")
@@ -32,6 +35,13 @@ public class User {
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
     }
+
+
+
+    //MAPPING TO PLATFORM LIST
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Platform> platformList;
 
 
     //CONSTRUCTORS
