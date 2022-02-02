@@ -31,12 +31,13 @@ public class PlatformService {
         List<Platform> platform = platformRepository.findByUserId(userDetails.getUser().getId());
 
         if (platform.isEmpty()) {
-            throw new InformationNotFoundException("No platform listings found for user id " + userDetails.getUser().getId());
+            throw new InformationNotFoundException("No platform listings found for User ID " + userDetails.getUser().getId());
         } else {
             return platform;
         }
     }
 
+    //POST
     public Platform createPlatform(Platform platformObject) {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -45,14 +46,33 @@ public class PlatformService {
 
         if (platform != null)
         {
-            throw new InformationExistsException("Category with name " + platform.getName() + " Already exists");
+            throw new InformationExistsException("Platform with name " + platform.getName() + " already exists");
         } else {
             platformObject.setUser(userDetails.getUser());
             return platformRepository.save(platformObject);
         }
     }
 
-    //
+
+    //PUT
+    public Platform updatePlatform(Long platformId, Platform platformObject) {
+
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
+
+        if (platform == null) {
+            throw new InformationNotFoundException("Platform with ID of " + platformId + " is not found.");
+        } else {
+            platform.setName(platformObject.getName());
+            platform.setUser(userDetails.getUser());
+            return platformRepository.save(platform);
+        }
+    }
+
+    //DELETE
+
 
 
 }

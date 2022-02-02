@@ -20,7 +20,6 @@ public class UserController {
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
 
-
     @Autowired
     public UserController(UserService userService, AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
         this.userService = userService;

@@ -18,6 +18,7 @@ public class Platform {
     private String name;
 
 
+
     //MAPPING TO SHOW TABLE
     @OneToMany(mappedBy = "platform", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -27,10 +28,10 @@ public class Platform {
     public List<Show> getShowList() {
         return showList;
     }
-
     public void setShowList(List<Show> showList) {
         this.showList = showList;
     }
+
 
 
     //MAPPING TO USER TABLE
@@ -39,13 +40,11 @@ public class Platform {
     @JsonIgnore
     private User user;
 
-    public User getUser() {
-        return user;
-    }
+            //SHOW GETTERS AND SETTERS
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+
 
     //CONSTRUCTORS
     public Platform() {
