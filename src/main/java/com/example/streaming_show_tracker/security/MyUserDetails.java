@@ -59,7 +59,6 @@ public class MyUserDetails implements UserDetails {
     }
 
 
-
     //GET USER METHOD
     public User getUser() {
         return user;
