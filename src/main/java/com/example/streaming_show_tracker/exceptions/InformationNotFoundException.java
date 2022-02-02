@@ -3,10 +3,10 @@ package com.example.streaming_show_tracker.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.CONFLICT)
-public class InformationExistsException extends RuntimeException{
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class InformationNotFoundException extends RuntimeException{
 
-    public InformationExistsException(String message) {
+    public InformationNotFoundException(String message){
         super(message);
     }
 
