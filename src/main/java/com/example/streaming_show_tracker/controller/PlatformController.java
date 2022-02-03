@@ -41,7 +41,6 @@ public class PlatformController {
     }
 
 
-
     @PostMapping
     public Platform createPlatform(@RequestBody Platform platformObject) {
         return platformService.createPlatform(platformObject);

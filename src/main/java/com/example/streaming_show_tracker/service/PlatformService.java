@@ -96,8 +96,7 @@ public class PlatformService {
 
         Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
 
-        //check the name of the platformobject to see if it already existws
-
+        //check the name of the platformObject to see if it already exists in the database
         Platform platformInDb = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformObject.getName());
 
 

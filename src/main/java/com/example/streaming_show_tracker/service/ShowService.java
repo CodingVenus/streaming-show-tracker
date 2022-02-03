@@ -41,7 +41,7 @@ public class ShowService {
 
         if (platform == null) {
             throw new InformationNotFoundException("Platform with ID " + platformId +
-                    " does not belongs to this user or the category does not exist");
+                    " does not belong to this user or the platform does not exist");
         }
         return platform.getShowList();
     }
@@ -54,8 +54,8 @@ public class ShowService {
         Platform platform = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformName);
 
         if (platform == null) {
-            throw new InformationNotFoundException("Platform with ID " + platformName +
-                    " does not belongs to this user or the category does not exist");
+            throw new InformationNotFoundException("Platform with name " + platformName +
+                    " does not belong to this user or the platform does not exist");
         }
         return platform.getShowList();
     }
@@ -171,20 +171,47 @@ public class ShowService {
 
         Show show = showRepository.findByIdAndUserId(showId, userDetails.getUser().getId());
 
+        Show showInDb = showRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), showObject.getName());
+
+
         if (show == null) {
             throw new InformationNotFoundException("Show with ID of " + showId + " is not found.");
         } else {
-            show.setName(showObject.getName());
-            show.setGenre(showObject.getGenre());
-            show.setDescription(showObject.getDescription());
-            show.setYear(showObject.getYear());
-            show.setWatchStatus(showObject.getWatchStatus());
-            show.setUser(userDetails.getUser());
-            return showRepository.save(show);
 
+            if (showInDb != null) {
+                throw new InformationExistsException("Show with name " + showObject.getName() + " already exists under this user.");
+            } else {
+                show.setName(showObject.getName());
+                show.setGenre(showObject.getGenre());
+                show.setDescription(showObject.getDescription());
+                show.setYear(showObject.getYear());
+                show.setWatchStatus(showObject.getWatchStatus());
+                show.setUser(userDetails.getUser());
+                return showRepository.save(show);
+            }
         }
     }
 
+//    public Show updateShow(Long showId, Show showObject) {
+//
+//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+//                .getPrincipal();
+//
+//        Show show = showRepository.findByIdAndUserId(showId, userDetails.getUser().getId());
+//
+//        if (show == null) {
+//            throw new InformationNotFoundException("Show with ID of " + showId + " is not found.");
+//        } else {
+//            show.setName(showObject.getName());
+//            show.setGenre(showObject.getGenre());
+//            show.setDescription(showObject.getDescription());
+//            show.setYear(showObject.getYear());
+//            show.setWatchStatus(showObject.getWatchStatus());
+//            show.setUser(userDetails.getUser());
+//            return showRepository.save(show);
+//
+//        }
+//    }
 
     //PATCH
 //    public Show updateShowPatch(Long showId, Map<Show, Show> showObjects) {
