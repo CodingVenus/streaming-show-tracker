@@ -59,4 +59,12 @@ public class ShowController {
         }
 
 
+    @PutMapping("show/{showId}")
+    public Show updateShow(@PathVariable(value = "showId") Long showId, @RequestBody Show showObject){
+
+        return showService.updateShow(showId, showObject);
+
+    }
+
+
 }
