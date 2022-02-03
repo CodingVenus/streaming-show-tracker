@@ -103,6 +103,7 @@ public class ShowService {
         }
         showObject.setUser(userDetails.getUser());
         showObject.setPlatform(platform);
+        showObject.setPlatformName(platform.getName());
         return showRepository.save(showObject);
 
     }

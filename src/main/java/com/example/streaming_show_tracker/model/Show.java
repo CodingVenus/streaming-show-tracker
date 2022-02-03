@@ -18,6 +18,8 @@ public class Show {
     private String description;
     private Integer year;
     private String watchStatus;
+    @Transient
+    private String platformName;
 
 
     //MAPPING TO PLATFORM TABLE
@@ -56,13 +58,14 @@ public class Show {
     public Show() {
     }
 
-    public Show(Long id, String name, String genre, String description, Integer year, String watchStatus) {
+    public Show(Long id, String name, String genre, String description, Integer year, String watchStatus, String platformName) {
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.description = description;
         this.year = year;
         this.watchStatus = watchStatus;
+        this.platformName = platformName;
     }
 
     //GETTERS AND SETTERS
@@ -112,6 +115,14 @@ public class Show {
 
     public void setWatchStatus(String watchStatus) {
         this.watchStatus = watchStatus;
+    }
+
+    public String getPlatformName() {
+        return platformName;
+    }
+
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName;
     }
 
     @Override
