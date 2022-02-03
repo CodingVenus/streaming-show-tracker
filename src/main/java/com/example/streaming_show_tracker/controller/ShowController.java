@@ -3,10 +3,7 @@ package com.example.streaming_show_tracker.controller;
 import com.example.streaming_show_tracker.model.Show;
 import com.example.streaming_show_tracker.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,11 @@ public class ShowController {
     @GetMapping("show/name/{showName}")
     public Show getShowByName(@PathVariable(value="showName") String showName){
         return showService.getShowByName(showName);
+    }
+
+    @PostMapping("platform/{platformId}/show")
+    public Show createShow(@PathVariable(value="platformId") Long platformId, @RequestBody Show showObject){
+        return showService.createShow(platformId, showObject);
     }
 
 

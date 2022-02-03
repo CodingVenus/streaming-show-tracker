@@ -1,5 +1,6 @@
 package com.example.streaming_show_tracker.service;
 
+import com.example.streaming_show_tracker.exceptions.InformationExistsException;
 import com.example.streaming_show_tracker.exceptions.InformationNotFoundException;
 import com.example.streaming_show_tracker.model.Platform;
 import com.example.streaming_show_tracker.model.Show;
@@ -25,7 +26,7 @@ public class ShowService {
     }
 
     //GET ALL SHOWS BY PLATFORM
-    public List<Show> getAllShowsByPlatform(Long platformId){
+    public List<Show> getAllShowsByPlatform(Long platformId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
@@ -39,7 +40,7 @@ public class ShowService {
     }
 
     //GET ALL SHOWS BY USER
-    public List<Show> getAllShowsByUserId(){
+    public List<Show> getAllShowsByUserId() {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
@@ -84,5 +85,25 @@ public class ShowService {
         }
     }
 
+    //POST
+    public Show createShow(Long platformId, Show showObject) {
 
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
+
+        if (platform == null) {
+            throw new InformationNotFoundException(
+                    "Platform with ID " + platformId + " is not listed under this User or the platform does not exist.");
+        }
+        Show show = showRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), showObject.getName());
+        if (show != null) {
+            throw new InformationExistsException("Show with the name " + show.getName() + " already exists.");
+        }
+        showObject.setUser(userDetails.getUser());
+        showObject.setPlatform(platform);
+        return showRepository.save(showObject);
+
+    }
 }
