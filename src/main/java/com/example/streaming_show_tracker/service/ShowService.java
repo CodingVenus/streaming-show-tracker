@@ -69,12 +69,20 @@ public class ShowService {
     }
 
 
-
-
     //GET SHOW BY NAME
 
+    public Show getShowByName(String showName) {
 
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        Show show = showRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), showName);
+
+        if (show == null) {
+            throw new InformationNotFoundException("Show with name " + showName + " was not found.");
+        } else {
+            return show;
+        }
+    }
 
 
 }

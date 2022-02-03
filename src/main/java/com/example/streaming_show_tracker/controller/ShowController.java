@@ -31,9 +31,14 @@ public class ShowController {
         return showService.getAllShowsByUserId();
     }
 
-    @GetMapping("show/{showId}")
+    @GetMapping("show/id/{showId}")
     public Show getShowById(@PathVariable(value="showId") Long showId){
         return showService.getShowById(showId);
+    }
+
+    @GetMapping("show/name/{showName}")
+    public Show getShowByName(@PathVariable(value="showName") String showName){
+        return showService.getShowByName(showName);
     }
 
 
