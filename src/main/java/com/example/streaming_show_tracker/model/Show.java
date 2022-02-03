@@ -20,6 +20,8 @@ public class Show {
     private String description;
     private Integer year;
     private String watchStatus;
+    @Transient
+    private String platformName;
 
 
 
@@ -39,7 +41,6 @@ public class Show {
 
 
     //MAPPING TO USER TABLE
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
@@ -117,6 +118,13 @@ public class Show {
         this.watchStatus = watchStatus;
     }
 
+    public String getPlatformName() {
+        return this.platform.getName();
+    }
+
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName;
+    }
 
     @Override
     public String toString() {
