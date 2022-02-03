@@ -55,6 +55,22 @@ public class ShowService {
 
     //GET SHOW BY ID
 
+    public Show getShowById(Long showId) {
+
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Show show = showRepository.findByIdAndUserId(showId, userDetails.getUser().getId());
+
+        if (show == null) {
+            throw new InformationNotFoundException("Show with ID " + showId + " was not found.");
+        } else {
+            return show;
+        }
+    }
+
+
+
+
     //GET SHOW BY NAME
 
 
