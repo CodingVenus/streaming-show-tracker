@@ -21,6 +21,9 @@ public class PlatformService {
         this.platformRepository = platformRepository;
     }
 
+
+
+
     //GET METHODS
 
             //GET ALL
@@ -93,14 +96,25 @@ public class PlatformService {
 
         Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
 
+        //check the name of the platformobject to see if it already existws
+
+        Platform platformInDb = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformObject.getName());
+
+
         if (platform == null) {
             throw new InformationNotFoundException("Platform with ID of " + platformId + " is not found.");
         } else {
-            platform.setName(platformObject.getName());
-            platform.setUser(userDetails.getUser());
-            return platformRepository.save(platform);
+            if (platformInDb != null) {
+                throw new InformationExistsException("Platform with name " + platformObject.getName() + " already exists");
+            } else {
+                platform.setName(platformObject.getName());
+                platform.setUser(userDetails.getUser());
+                return platformRepository.save(platform);
+            }
         }
     }
+
+
 
     //DELETE
     public String deletePlatform(Long platformId) {

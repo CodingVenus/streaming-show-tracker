@@ -19,6 +19,7 @@ public class Platform {
 
 
 
+
     //MAPPING TO SHOW TABLE
     @OneToMany(mappedBy = "platform", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)

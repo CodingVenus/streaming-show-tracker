@@ -7,11 +7,15 @@ import com.example.streaming_show_tracker.model.Show;
 import com.example.streaming_show_tracker.repository.PlatformRepository;
 import com.example.streaming_show_tracker.repository.ShowRepository;
 import com.example.streaming_show_tracker.security.MyUserDetails;
+import org.aspectj.util.Reflection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.ReflectionUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ShowService {
@@ -20,6 +24,7 @@ public class ShowService {
     private PlatformRepository platformRepository;
 
 
+    @Autowired
     public ShowService(ShowRepository showRepository, PlatformRepository platformRepository) {
         this.showRepository = showRepository;
         this.platformRepository = platformRepository;
@@ -131,6 +136,7 @@ public class ShowService {
         return getShow(showObject, userDetails, platform);
 
     }
+
     //METHOD USED IN POST METHODS TO STOP DUPLICATE CODE
     public Show getShow(Show showObject, MyUserDetails userDetails, Platform platform) {
         Show show = showRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), showObject.getName());
@@ -179,4 +185,26 @@ public class ShowService {
         }
     }
 
+
+    //PATCH
+//    public Show updateShowPatch(Long showId, Map<Show, Show> showObjects) {
+//
+//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+//                .getPrincipal();
+//
+//        Show show = showRepository.findByIdAndUserId(showId, userDetails.getUser().getId());
+//
+//        if (show == null) {
+//            throw new InformationNotFoundException("Show with ID of " + showId + " is not found.");
+//        } else {
+//            showObjects.forEach((k, v) -> {
+//
+//                Field field = ReflectionUtils.findField(Show.class, (org.springframework.util.ReflectionUtils.FieldFilter) k);
+//                field.setAccessible(true);
+//                ReflectionUtils.setField(field, show, v);
+//
+//            });
+//            return showRepository.save(show);
+//        }
+//    }
 }
