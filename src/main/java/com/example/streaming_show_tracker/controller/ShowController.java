@@ -18,9 +18,14 @@ public class ShowController {
         this.showService = showService;
     }
 
-    @GetMapping("platform/{platformId}/show")
-    public List<Show> getAllShowsByPlatform(@PathVariable(value="platformId") Long platformId){
-        return showService.getAllShowsByPlatform(platformId);
+    @GetMapping("platform/id/{platformId}/show")
+    public List<Show> getAllShowsByPlatformId(@PathVariable(value="platformId") Long platformId){
+        return showService.getAllShowsByPlatformId(platformId);
+    }
+
+    @GetMapping("platform/name/{platformName}/show")
+    public List<Show> getAllShowsByPlatformName(@PathVariable(value="platformName") String platformName){
+        return showService.getAllShowsByPlatformName(platformName);
     }
 
     @GetMapping("show")
@@ -42,6 +47,7 @@ public class ShowController {
     public Show createShow(@PathVariable(value="platformId") Long platformId, @RequestBody Show showObject){
         return showService.createShow(platformId, showObject);
     }
+
 
 
 }

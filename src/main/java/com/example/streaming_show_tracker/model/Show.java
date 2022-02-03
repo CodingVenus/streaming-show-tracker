@@ -18,7 +18,6 @@ public class Show {
     private String description;
     private Integer year;
     private String watchStatus;
-    @Transient
     private String platformName;
 
 

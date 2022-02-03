@@ -25,15 +25,31 @@ public class ShowService {
         this.platformRepository = platformRepository;
     }
 
+    //GET METHODS
+
     //GET ALL SHOWS BY PLATFORM
-    public List<Show> getAllShowsByPlatform(Long platformId) {
+    public List<Show> getAllShowsByPlatformId(Long platformId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
         Platform platform = platformRepository.findByIdAndUserId(platformId, userDetails.getUser().getId());
 
         if (platform == null) {
-            throw new InformationNotFoundException("Category with ID " + platformId +
+            throw new InformationNotFoundException("Platform with ID " + platformId +
+                    " does not belongs to this user or the category does not exist");
+        }
+        return platform.getShowList();
+    }
+
+    //GET ALL SHOWS BY PLATFORM
+    public List<Show> getAllShowsByPlatformName(String platformName) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        Platform platform = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformName);
+
+        if (platform == null) {
+            throw new InformationNotFoundException("Platform with ID " + platformName +
                     " does not belongs to this user or the category does not exist");
         }
         return platform.getShowList();
@@ -55,7 +71,6 @@ public class ShowService {
 
 
     //GET SHOW BY ID
-
     public Show getShowById(Long showId) {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -71,7 +86,6 @@ public class ShowService {
 
 
     //GET SHOW BY NAME
-
     public Show getShowByName(String showName) {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
