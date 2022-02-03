@@ -4,13 +4,14 @@ import com.example.streaming_show_tracker.model.Show;
 import com.example.streaming_show_tracker.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/show")
+@RequestMapping(path = "api/")
 public class ShowController {
 
     public ShowService showService;
@@ -20,9 +21,15 @@ public class ShowController {
         this.showService = showService;
     }
 
-    @GetMapping
-    public List<Show> getShowList(Long platformId){
-        return showService.getAllShows(platformId);
+    @GetMapping("platform/{platformId}/show")
+    public List<Show> getAllShowsByPlatform(@PathVariable(value="platformId") Long platformId){
+        return showService.getAllShowsByPlatform(platformId);
     }
+
+    @GetMapping("show")
+    public List<Show> getAllShowsByUserId(){
+        return showService.getAllShowsByUserId();
+    }
+
 
 }

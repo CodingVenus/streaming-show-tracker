@@ -24,8 +24,8 @@ public class ShowService {
         this.platformRepository = platformRepository;
     }
 
-
-    public List<Show> getAllShows(Long platformId){
+    //GET ALL SHOWS BY PLATFORM
+    public List<Show> getAllShowsByPlatform(Long platformId){
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
@@ -37,6 +37,27 @@ public class ShowService {
         }
         return platform.getShowList();
     }
+
+    //GET ALL SHOWS BY USER
+    public List<Show> getAllShowsByUserId(){
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        List<Show> show = showRepository.findByUserId(userDetails.getUser().getId());
+
+        if (show == null) {
+            throw new InformationNotFoundException("User with ID " + userDetails.getUser().getId() +
+                    " does not have any shows.");
+        }
+        return show;
+    }
+
+
+    //GET SHOW BY ID
+
+    //GET SHOW BY NAME
+
+
 
 
 
