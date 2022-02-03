@@ -43,9 +43,14 @@ public class ShowController {
         return showService.getShowByName(showName);
     }
 
-    @PostMapping("platform/{platformId}/show")
-    public Show createShow(@PathVariable(value="platformId") Long platformId, @RequestBody Show showObject){
-        return showService.createShow(platformId, showObject);
+    @PostMapping("platform/id/{platformId}/show")
+    public Show createShowByPlatformId(@PathVariable(value="platformId") Long platformId, @RequestBody Show showObject){
+        return showService.createShowByPlatformId(platformId, showObject);
+    }
+
+    @PostMapping("platform/name/{platformName}/show")
+    public Show createShowByPlatformName(@PathVariable(value="platformName") String platformName, @RequestBody Show showObject){
+        return showService.createShowByPlatformName(platformName, showObject);
     }
 
 

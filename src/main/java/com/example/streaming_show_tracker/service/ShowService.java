@@ -99,8 +99,9 @@ public class ShowService {
         }
     }
 
-    //POST
-    public Show createShow(Long platformId, Show showObject) {
+    //POST METHODS
+    //POST SHOW BY PLATFORM ID
+    public Show createShowByPlatformId(Long platformId, Show showObject) {
 
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
@@ -111,14 +112,34 @@ public class ShowService {
             throw new InformationNotFoundException(
                     "Platform with ID " + platformId + " is not listed under this User or the platform does not exist.");
         }
+        return getShow(showObject, userDetails, platform);
+
+    }
+
+    //POST SHOW BY PLATFORM NAME
+    public Show createShowByPlatformName(String platformName, Show showObject) {
+
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        Platform platform = platformRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), platformName);
+
+        if (platform == null) {
+            throw new InformationNotFoundException(
+                    "Platform with Name " + platformName + " is not listed under this User or the platform does not exist.");
+        }
+        return getShow(showObject, userDetails, platform);
+
+    }
+    //METHOD USED IN CREATESHOW METHODS TO STOP DUPLICATE CODE
+    public Show getShow(Show showObject, MyUserDetails userDetails, Platform platform) {
         Show show = showRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), showObject.getName());
         if (show != null) {
             throw new InformationExistsException("Show with the name " + show.getName() + " already exists.");
         }
         showObject.setUser(userDetails.getUser());
         showObject.setPlatform(platform);
-        showObject.setPlatformName(platform.getName());
         return showRepository.save(showObject);
-
     }
+
 }

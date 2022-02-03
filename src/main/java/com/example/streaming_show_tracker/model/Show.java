@@ -2,6 +2,8 @@ package com.example.streaming_show_tracker.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 
@@ -18,7 +20,7 @@ public class Show {
     private String description;
     private Integer year;
     private String watchStatus;
-    private String platformName;
+
 
 
     //MAPPING TO PLATFORM TABLE
@@ -57,14 +59,13 @@ public class Show {
     public Show() {
     }
 
-    public Show(Long id, String name, String genre, String description, Integer year, String watchStatus, String platformName) {
+    public Show(Long id, String name, String genre, String description, Integer year, String watchStatus) {
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.description = description;
         this.year = year;
         this.watchStatus = watchStatus;
-        this.platformName = platformName;
     }
 
     //GETTERS AND SETTERS
@@ -116,13 +117,6 @@ public class Show {
         this.watchStatus = watchStatus;
     }
 
-    public String getPlatformName() {
-        return platformName;
-    }
-
-    public void setPlatformName(String platformName) {
-        this.platformName = platformName;
-    }
 
     @Override
     public String toString() {
