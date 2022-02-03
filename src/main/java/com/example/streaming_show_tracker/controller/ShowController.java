@@ -53,6 +53,10 @@ public class ShowController {
         return showService.createShowByPlatformName(platformName, showObject);
     }
 
+    @DeleteMapping("show/{showId}")
+    public String deleteShow(@PathVariable(value="showId") Long showId) {
+            return showService.deleteShow(showId);
+        }
 
 
 }

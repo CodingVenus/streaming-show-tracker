@@ -131,7 +131,7 @@ public class ShowService {
         return getShow(showObject, userDetails, platform);
 
     }
-    //METHOD USED IN CREATESHOW METHODS TO STOP DUPLICATE CODE
+    //METHOD USED IN POST METHODS TO STOP DUPLICATE CODE
     public Show getShow(Show showObject, MyUserDetails userDetails, Platform platform) {
         Show show = showRepository.findByUserIdAndNameIgnoreCase(userDetails.getUser().getId(), showObject.getName());
         if (show != null) {
@@ -141,5 +141,24 @@ public class ShowService {
         showObject.setPlatform(platform);
         return showRepository.save(showObject);
     }
+
+
+    //DELETE BY ID
+    public String deleteShow(Long showId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Show show = showRepository.findByIdAndUserId(showId, userDetails.getUser().getId());
+        if (show == null) {
+            throw new InformationNotFoundException("Show with ID " + showId + " is not found.");
+        } else {
+            showRepository.deleteById(showId);
+            return "Show Name: " + show.getName() + " Id: " + showId + " has been successfully deleted.";
+        }
+    }
+
+
+
+
+    //UPDATE
 
 }

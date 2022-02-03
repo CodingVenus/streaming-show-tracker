@@ -20,7 +20,7 @@ public class Show {
     private String description;
     private Integer year;
     private String watchStatus;
-    @Transient
+    @Transient //Don't want platformName to be added to database, just returned with JSON
     private String platformName;
 
 
