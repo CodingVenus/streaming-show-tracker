@@ -46,7 +46,7 @@ After much research, I learned about the @Transient annotation that would allow 
 
 
 ##STRETCH
-
+To ensure that I had a firm understanding of path creation, HTTP Method Mapping, and accurately utilzing JPARespository methods, I decided to create a variety of get endpoints that used either name or id to get back items back from the database.
 
 ##USER STORIES -
                                                               
