@@ -9,6 +9,8 @@ The goal of this project was to create a simple REST API that would allow a user
 **CODE**
 - JAVA
 - SPRING BOOT
+- SPRING DATA
+- SPRING SECURITY
 - MAVEN
 - INTELLIJ IDEA
 - JWT TOKENS
