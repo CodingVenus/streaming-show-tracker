@@ -190,6 +190,7 @@ A ran into an issue while trying to modify my JSON output to return the name of 
 After much research, I learned about the @Transient annotation that would allow me to include a field variable in my Show model class, without the Spring application using it to create an additional field in my table. Using the Autowired Platform model, I was able to have this variable retrieve the name of the platform associated with the individual Show Object and return it with the JSON response.
 
 ## FUTURE DELIVERABLES
+- Create a front end.
 - Introduce proper endpoints to update User Profile
 - Integrate with external API database that houses large listings of shows.
 - Add a rating system for shows.
