@@ -192,4 +192,5 @@ After much research, I learned about the @Transient annotation that would allow 
 ## FUTURE DELIVERABLES
 - Introduce proper endpoints to update User Profile
 - Integrate with external API database that houses large listings of shows.
-- Add a rating system for shows
+- Add a rating system for shows.
+- Update Put Mapping to Patch Mapping.
