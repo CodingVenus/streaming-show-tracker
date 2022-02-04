@@ -193,46 +193,4 @@ public class ShowService {
         }
     }
 
-//    public Show updateShow(Long showId, Show showObject) {
-//
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//
-//        Show show = showRepository.findByIdAndUserId(showId, userDetails.getUser().getId());
-//
-//        if (show == null) {
-//            throw new InformationNotFoundException("Show with ID of " + showId + " is not found.");
-//        } else {
-//            show.setName(showObject.getName());
-//            show.setGenre(showObject.getGenre());
-//            show.setDescription(showObject.getDescription());
-//            show.setYear(showObject.getYear());
-//            show.setWatchStatus(showObject.getWatchStatus());
-//            show.setUser(userDetails.getUser());
-//            return showRepository.save(show);
-//
-//        }
-//    }
-
-    //PATCH
-//    public Show updateShowPatch(Long showId, Map<Show, Show> showObjects) {
-//
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//
-//        Show show = showRepository.findByIdAndUserId(showId, userDetails.getUser().getId());
-//
-//        if (show == null) {
-//            throw new InformationNotFoundException("Show with ID of " + showId + " is not found.");
-//        } else {
-//            showObjects.forEach((k, v) -> {
-//
-//                Field field = ReflectionUtils.findField(Show.class, (org.springframework.util.ReflectionUtils.FieldFilter) k);
-//                field.setAccessible(true);
-//                ReflectionUtils.setField(field, show, v);
-//
-//            });
-//            return showRepository.save(show);
-//        }
-//    }
 }
