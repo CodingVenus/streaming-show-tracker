@@ -2,7 +2,21 @@
 
 ##OBJECTIVE
 The goal of this project was to create a simple REST API that would allow a user to track shows from different streaming platforms that they are watching, have watched, or plan to watch. This API would be built using Java, Spring Boot, and PostgreSQL.
+###TOOLS AND TECHNOLOGIES USED
+**DESIGN**
+- LUCID CHART
 
+**CODE**
+- JAVA
+- SPRING BOOT
+- MAVEN
+- INTELLIJ IDEA
+- JWT TOKENS
+
+**DATABASE**
+- POSTMAN
+
+- POSTGRESQL
 
 ##THE PLAN
 I planned for this application to follow the MVC design, while also utilizing the Repository-Service Pattern. This meant that the REST API would be split into layers,
@@ -10,9 +24,14 @@ with the Repository layer responsible for handling database interaction, the Ser
 
 Following this pattern ensured that the application was adequately decoupled and following the Single Responsibility Principle.
 ###ERD DIAGRAM
+![ERD.png](images/ERD.png)
 ###POM DEPENDENCIES
+![SpringStarter.png](images/SpringStarter.png)
 ###LAYERED DESIGN APPROACH
-###TOOLS AND TECHNOLOGIES USED
+![DESIGN.png](images/DESIGN.png)
+
+
+
 ##THE PROCESS
 After planning out the individual table entities and their relationships, I created the skeleton of my Spring Boot application, adding all necessary dependencies. I created several Java Model classes in my project that would become the base for constructing the entity tables in my database. I decided earlier on that I wanted to utilize Spring Boot Web Security and JWT tokens, so I began working on those classes before moving on to the Service and Repository layers.
 
