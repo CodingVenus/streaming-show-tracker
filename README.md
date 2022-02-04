@@ -1,4 +1,4 @@
-# **Streaming Show Tracker**
+# **Streaming TV Show Tracker**
 
 ##OBJECTIVE
 The goal of this project was to create a simple REST API that would allow a user to track shows from different streaming platforms that they are watching, have watched, or plan to watch. This API would be built using Java, Spring Boot, and PostgreSQL.
