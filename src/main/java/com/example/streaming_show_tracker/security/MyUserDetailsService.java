@@ -12,10 +12,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
-//    @Autowired
-//    public MyUserDetailsService(UserService userService) {
-//        this.userService = userService;
-//    }
 
     @Autowired
     public void setUserService(UserService userService) {

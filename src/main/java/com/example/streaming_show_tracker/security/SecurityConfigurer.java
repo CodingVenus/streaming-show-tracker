@@ -28,11 +28,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
     public void setMyUserDetailsService(MyUserDetailsService myUserDetailsService) {
         this.myUserDetailsService = myUserDetailsService;
     }
-//    @Autowired
-//    public SecurityConfigurer(MyUserDetailsService myUserDetailsService, JwtRequestFilter jwtRequestFilter) {
-//        this.myUserDetailsService = myUserDetailsService;
-//        this.jwtRequestFilter = jwtRequestFilter;
-//    }
 
     @Bean
     public PasswordEncoder encoder() {
