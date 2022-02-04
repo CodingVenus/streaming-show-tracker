@@ -36,23 +36,6 @@ public class UserService {
     @Autowired
     private JWTUtils jwtUtils;
 
-//    private PasswordEncoder passwordEncoder;
-//    private AuthenticationManager authenticationManager;
-//    private UserDetailsService userDetailsService;
-//    private JWTUtils jwtUtils;
-//
-//    @Autowired
-//    public UserService(UserRepository userRepository,
-//                       PasswordEncoder passwordEncoder,
-//                       AuthenticationManager authenticationManager,
-//                       UserDetailsService userDetailsService,
-//                       JWTUtils jwtUtils) {
-//        this.userRepository = userRepository;
-//        this.passwordEncoder = passwordEncoder;
-//        this.authenticationManager = authenticationManager;
-//        this.userDetailsService = userDetailsService;
-//        this.jwtUtils = jwtUtils;
-//    }
 
 
     //METHODS
@@ -85,6 +68,10 @@ public class UserService {
         return ResponseEntity.ok(new LoginResponse(JWT));
 
     }
+
+    /////
+
+
 
 
 }

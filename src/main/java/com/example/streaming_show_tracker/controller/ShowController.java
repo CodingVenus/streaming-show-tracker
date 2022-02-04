@@ -73,14 +73,5 @@ public class ShowController {
 
     }
 
-//    @PatchMapping("show/{showId}")
-//    public Show updateShowPatch(@PathVariable(value = "showId") Long showId, @RequestBody Map<Show, Show> showObject){
-//
-//        return showService.updateShowPatch(showId, showObject);
-//
-//    }
-
-
-
 
 }
