@@ -67,11 +67,12 @@ public class ShowService {
 
         List<Show> show = showRepository.findByUserId(userDetails.getUser().getId());
 
-        if (show == null) {
+        if (show.isEmpty()) {
             throw new InformationNotFoundException("User with ID " + userDetails.getUser().getId() +
                     " does not have any shows.");
+        } else {
+            return show;
         }
-        return show;
     }
 
 
